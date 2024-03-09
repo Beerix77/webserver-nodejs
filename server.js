@@ -13,7 +13,9 @@ const PORT = 3333;
 
 //Use ejs for templating
 const ejs = require('ejs');
-app.set('view-engine', ejs); // Render templates in views/ folder
+app.set('view-engine', ejs); // Render templates in views/ folder (setting up ejs into 'app'
+//app.get(): uses express.js
+//app.set(): configures express to use ejs
 
 
 
@@ -82,3 +84,13 @@ app.get( '/movies/:id', (req, res) => {
 });
 
 
+
+
+////////////////////////////////////////////////////////////
+// BROWSER: using ejs as a HTML templating system
+// localhost:3333/dogs
+app.get('/dogs', (req, res) => {
+
+  res.render('dogIndex.ejs');
+
+});
