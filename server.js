@@ -1,5 +1,5 @@
 
-console.log(`Hello Backend!`);
+//console.log(`Hello Backend!!!`);
 
 
 const express = require('express');
@@ -12,12 +12,22 @@ app.listen( PORT, () => {
   console.log(`Server listening on http://localhost:${PORT}`);
 });
 
-// web server map a path to some code:
+// web server => map a path to some code:
 // app.verb( path, callback )
 
-app.get('/', () => {
-  console.log('Homepage selected....');
-})
+// default path
+app.get('/', ( req, res) => { // res,req provided by 'express'
+  
+  console.log('Homepage selected....'); // terminal
+  res.send('Hello Browser!!!'); // send to browser
+
+});
 
 
+// dynamic routes
+app.get ('/search/:subject', (req, res) => {
 
+  console.log(`You are searching for ${req.params.subject}`);
+  res.send(`RESULTS for: ${req.params.subject}`)
+
+});
