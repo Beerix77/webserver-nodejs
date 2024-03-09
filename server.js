@@ -89,8 +89,12 @@ app.get( '/movies/:id', (req, res) => {
 ////////////////////////////////////////////////////////////
 // BROWSER: using ejs as a HTML templating system
 // localhost:3333/dogs
-app.get('/dogs', (req, res) => {
+app.get('/dogs/', (req, res) => {
 
-  res.render('dogIndex.ejs');
+  res.render('dogIndex.ejs', {
+    dogName: req.query.name,
+    age: Math.floor(Math.random() * 10)
+    
+  });
 
 });
