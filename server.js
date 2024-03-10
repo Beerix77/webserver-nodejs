@@ -15,6 +15,11 @@ const PORT = 3333;
 
 app.use(express.static('public')); // express 'middleware'
 
+//Handle POSTed form data
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
+
+
 //Use ejs for templating
 const ejs = require('ejs');
 app.set('view-engine', ejs); // Render templates in views/ folder (setting up ejs into 'app'
@@ -95,6 +100,8 @@ app.get( '/movies/:id', (req, res) => {
 // localhost:3333/dogs?name=Fido
 app.get('/dogs/', (req, res) => {
 
+  console.log(`Dogs website selected...`);
+
   res.render('dogIndex.ejs', {
     dogName: req.query.name,
     age: Math.floor(Math.random() * 10)
@@ -109,7 +116,7 @@ app.get('/dogs/', (req, res) => {
 // BROWSER: using an API
 // localhost:3333/dogs?name=Fido
 
-
+//JSON
 app.get('/api/dogs', (req, res) => {
   //NB: In a real API, this data would come from a DataBase query.
   const dogIndex = [
@@ -127,6 +134,21 @@ app.get('/api/dogs', (req, res) => {
 
 
 
+app.post('/dogs/add', (req, res) => {
+
+  console.log(req.body); // see as object in Terminal
+  res.send('Form submitted.');
+  //res.redirect('/xxx'); // Redirect after form submit. Avoids user reloading the page and resubmitting
+  
+});
+
+
+
+
+// default generic route (error handler)
+app.use ( (req, res) => {
+  res.send(`Oops, looks like there's nothing here!`)
+});
 
 
 

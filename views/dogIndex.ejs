@@ -19,7 +19,7 @@
   <p>Your Dog's age is <%= age %></p>
   <p>1 + 2 = <%= 1 + 2 %></p>
 
-<form action="/dogs/add"> <!-- action determines what the form asks for from the server when you submit the form -->
+<form action="/dogs/add" method="post"> <!-- action determines what the form asks for from the server when you submit the form -->
   <input type="text" name="dogName">
   <button>Add Dog</button>
 </form>
