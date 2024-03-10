@@ -5,11 +5,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dogs</title>
+  <link rel="shortcut icon" href="#"><!-- no favicon error -->
+  <link rel="stylesheet" href="/css/style.css">
+
+  <script src="/js/main.js"></script>
+  
+  
+
 </head>
 <body>
   <h1>DOGS WEBPAGE</h1>
   <p>Your Dog's name is <%= dogName %></p>
   <p>Your Dog's age is <%= age %></p>
   <p>1 + 2 = <%= 1 + 2 %></p>
+
+<form action="/dogs/add"> <!-- action determines what the form asks for from the server when you submit the form -->
+  <input type="text" name="dogName">
+  <button>Add Dog</button>
+</form>
+
 </body>
 </html>

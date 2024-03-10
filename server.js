@@ -11,6 +11,10 @@ const app = express();
 
 const PORT = 3333;
 
+//Set up a static/assets folder whose contents are "passed through" to the browser directly, without needing to define a custom route ie app.get(....)'
+
+app.use(express.static('public')); // express 'middleware'
+
 //Use ejs for templating
 const ejs = require('ejs');
 app.set('view-engine', ejs); // Render templates in views/ folder (setting up ejs into 'app'
@@ -88,13 +92,54 @@ app.get( '/movies/:id', (req, res) => {
 
 ////////////////////////////////////////////////////////////
 // BROWSER: using ejs as a HTML templating system
-// localhost:3333/dogs
+// localhost:3333/dogs?name=Fido
 app.get('/dogs/', (req, res) => {
 
   res.render('dogIndex.ejs', {
     dogName: req.query.name,
     age: Math.floor(Math.random() * 10)
-    
+
   });
 
 });
+
+
+
+////////////////////////////////////////////////////////////
+// BROWSER: using an API
+// localhost:3333/dogs?name=Fido
+
+
+app.get('/api/dogs', (req, res) => {
+  //NB: In a real API, this data would come from a DataBase query.
+  const dogIndex = [
+    {name: 'Fido', age: 1},
+    {name: 'Scoot', age: 4},
+    {name: 'Rex', age: 2},
+    {name: 'Leia', age: 7},
+  ];
+
+  res.json(dogIndex);
+
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
